@@ -1,4 +1,4 @@
-import fetch from 'node-fetch' // necessary because 'fetch' call below does not come out of the box with node
+// import fetch from 'node-fetch' // necessary because 'fetch' call below does not come out of the box with node
 
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
