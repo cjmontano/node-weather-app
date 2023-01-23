@@ -13,18 +13,18 @@ const forecast = (lat, lon, callbackFx) => {
       // console.error('location_temp() error: location not found', response.body.error)
       callbackFx('location_temp() error: location not found', undefined)
     } else {
-      callbackFx(undefined, response.body.current)
+      // callbackFx(undefined, response.body.current)
 
       // Use the next block of code if you want to assemble a weather sentence insie of forecast
-      // const currentData = response.body.current
-      // const retStr = 'It is currently ' + currentData.temperature + ' degrees Fahrenheit in ' + 'and ' + currentData.weather_descriptions[0] + '; it feels like ' + currentData.feelslike
-      // console.log(retStr)
-      /* callbackFx(undefined, {
+      const currentData = response.body.current
+      const retStr = 'Right now (' + currentData.observation_time + ' UTC), it is ' + currentData.temperature + ' degrees Fahrenheit in ' + 'and ' + currentData.weather_descriptions[0] + '; it feels like ' + currentData.feelslike
+      console.log(retStr)
+      callbackFx(undefined, {
         foundTemperature: currentData.temperature,
         foundDescription: currentData.weather_descriptions[0],
         foundFeelslike: currentData.feelslike,
         foundWeatherSentence: retStr
-      }) */
+      })
     }
   })
 }

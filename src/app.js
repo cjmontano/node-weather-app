@@ -63,8 +63,8 @@ app.get('/weather', (req, res) => {
     } else {
       // Next line leverages ES6 Object Destructuring - MUST USE THE SAME VARIABLE NAME as in the function definition unless renamed 'name: newName'
       // Also, '= {}' is a default constructor that safeguards us in case we try to desctructure something undefined (i.e. not an object)
-      // forecast(foundLongitude, foundLatitude, (error, { foundTemperature: temp, foundDescription: desc, foundFeelslike: feels, foundWeatherSentence } = {}) => {
-      forecast(foundLongitude, foundLatitude, (error, forecastData) => {
+      forecast(foundLongitude, foundLatitude, (error, { foundTemperature: temp, foundDescription: desc, foundFeelslike: feels, foundWeatherSentence } = {}) => {
+      // forecast(foundLongitude, foundLatitude, (error, forecastData) => {
         if (error) {
           // console.log(error)
           res.send({
@@ -72,22 +72,22 @@ app.get('/weather', (req, res) => {
           })
         } else {
           // construct the 'weather sentence' here because you have access to 'foundLocation' here (but not inside forecast())
-          const tmpStr = 'It is currently ' + forecastData.temperature + ' degrees Fahrenheit in ' + foundLocation + ' and ' + forecastData.weather_descriptions[0] + '; it feels like ' + forecastData.feelslike
+          /* const tmpStr = 'It is currently ' + forecastData.temperature + ' degrees Fahrenheit in ' + foundLocation + ' and ' + forecastData.weather_descriptions[0] + '; it feels like ' + forecastData.feelslike
           res.send({
             queryLocation: req.query.address,
             foundLocation,
             foundWeatherSentence: tmpStr
-          })
+          }) */
 
           // Below, the weather sentence is sent in the deconstructed callback object (per commented forecast line above)
           // You must also change code to send that object from forecast (also commented out there)
-          /* res.send({
+          res.send({
             queryLocation: req.query.address,
             foundLocation,
             foundWeatherSentence,
             foundTemperature: temp,
             foundFeelsLike: feels
-          }) */
+          })
         }
       })
     }
